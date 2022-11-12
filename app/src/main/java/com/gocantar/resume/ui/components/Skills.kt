@@ -40,12 +40,12 @@ private fun SkillsRow(skills: List<SkillComposable>) {
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(SkillsDefaults.Padding)
     ) {
-        skills.forEach { skill ->
-            Skill(
-                modifier = Modifier.weight(1F),
-                skill = skill
-            )
-        }
+        val modifier = if (skills.count() != SkillsDefaults.ColumnsCount) {
+            Modifier
+                .fillMaxWidth(1F / SkillsDefaults.ColumnsCount)
+                .padding(end = SkillsDefaults.Padding / 2)
+        } else { Modifier.weight(1F) }
+        skills.forEach { skill -> Skill(modifier = modifier, skill = skill) }
     }
 }
 
@@ -102,7 +102,12 @@ fun SkillPreview() {
                         title = "4 Large very long title more than two lines",
                         description = "4 Large very long description with more than three lines",
                         icon = R.drawable.ic_cloud_download
-                    )
+                    ),
+                    SkillComposable(
+                        title = "5 Small title",
+                        description = "5 Small description",
+                        icon = R.drawable.ic_cloud_download
+                    ),
                 )
             )
         )
@@ -138,6 +143,11 @@ fun SkillPreviewDark() {
                     SkillComposable(
                         title = "4 Large very long title more than two lines",
                         description = "4 Large very long description with more than three lines",
+                        icon = R.drawable.ic_cloud_download
+                    ),
+                    SkillComposable(
+                        title = "5 Small title",
+                        description = "5 Small description",
                         icon = R.drawable.ic_cloud_download
                     )
                 )
