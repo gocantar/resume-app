@@ -28,14 +28,14 @@ fun PrimaryButton(
 ) {
     Button(
         modifier = modifier,
-        shape = RoundedCornerShape(25),
+        shape = RoundedCornerShape(12.dp),
         onClick = onClick
     ) {
         icon?.let {
             Icon(
                 modifier = Modifier
-                    .padding(end = 8.dp)
-                    .size(24.dp),
+                    .padding(end = ButtonDefaults.IconSpacing)
+                    .size(ButtonDefaults.IconSize),
                 painter = painterResource(id = it),
                 contentDescription = null
             )
@@ -54,18 +54,13 @@ fun ButtonLink(
     TextButton(
         modifier = modifier,
         onClick = onClick,
-        contentPadding = PaddingValues(
-            start = 16.dp,
-            top = ButtonDefaults.ContentPadding.calculateTopPadding(),
-            end = 16.dp,
-            bottom = ButtonDefaults.ContentPadding.calculateBottomPadding()
-        )
+        contentPadding = ButtonDefaults.ContentPadding
     ) {
         icon?.let {
             Icon(
                 modifier = Modifier
-                    .padding(end = 8.dp)
-                    .size(24.dp),
+                    .padding(end = ButtonDefaults.IconSpacing)
+                    .size(ButtonDefaults.IconSize),
                 painter = painterResource(id = it),
                 contentDescription = null
             )
@@ -81,7 +76,7 @@ fun ButtonLink(
 @Composable
 fun ButtonPreview() {
     AppTheme {
-        Column {
+        Column(Modifier.padding(16.dp)) {
             PrimaryButton(text = "Primary button")
             PrimaryButton(text = "Primary button icon", icon = R.drawable.ic_cloud_download)
             ButtonLink(text = "Link button")
@@ -97,7 +92,7 @@ fun ButtonPreview() {
 @Composable
 fun ButtonPreviewDark() {
     AppTheme(darkTheme = true) {
-        Column {
+        Column(Modifier.padding(16.dp)) {
             PrimaryButton(text = "Primary button")
             PrimaryButton(text = "Primary button icon", icon = R.drawable.ic_cloud_download)
             ButtonLink(text = "Link button")
