@@ -56,8 +56,7 @@ private fun Skill(
 ) {
     Card(
         modifier = modifier,
-        shape = RoundedCornerShape(24.dp),
-        elevation = 0.dp
+        shape = RoundedCornerShape(24.dp)
     ) {
         Column(modifier = Modifier.padding(SkillsDefaults.Padding)) {
             Icon(
