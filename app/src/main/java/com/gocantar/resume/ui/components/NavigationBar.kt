@@ -6,8 +6,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
@@ -99,9 +101,17 @@ private fun NavigationBarItem(
 
 @Preview(showBackground = true)
 @Composable
-fun NavigationPreview() {
+fun NavigationBarPreview() {
     AppTheme {
-        NavigationBar(NavigationBarComposable.Home.route)
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            NavigationBar(NavigationBarComposable.Home.route)
+            NavigationBar(NavigationBarComposable.Experience.route)
+            NavigationBar(NavigationBarComposable.Studies.route)
+            NavigationBar(NavigationBarComposable.Portfolio.route)
+        }
     }
 }
 
@@ -110,8 +120,16 @@ fun NavigationPreview() {
     backgroundColor = 0xFF000000
 )
 @Composable
-fun NavigationPreviewDark() {
+fun NavigationBarPreviewDark() {
     AppTheme(darkTheme = true) {
-        NavigationBar(NavigationBarComposable.Home.route)
+        Column(
+            modifier = Modifier.padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            NavigationBar(NavigationBarComposable.Home.route)
+            NavigationBar(NavigationBarComposable.Experience.route)
+            NavigationBar(NavigationBarComposable.Studies.route)
+            NavigationBar(NavigationBarComposable.Portfolio.route)
+        }
     }
 }
