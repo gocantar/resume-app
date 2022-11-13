@@ -30,7 +30,10 @@ import com.gocantar.resume.ui.components.models.NavigationBarComposable
 import com.gocantar.resume.ui.theme.AppTheme
 
 @Composable
-fun NavigationBar(navController: NavController) {
+fun NavigationBar(
+    currentRoute: String,
+    onClick: (String) -> Unit = {}
+) {
 
     val items = listOf(
         NavigationBarComposable.Home,
@@ -43,24 +46,17 @@ fun NavigationBar(navController: NavController) {
         backgroundColor = MaterialTheme.colors.background,
         elevation = 0.dp
     ) {
-        val navigationStack by navController.currentBackStackEntryAsState()
-        val route = navigationStack?.destination?.route
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            items.forEach {
-                NavigationBarItem(item = it, selected = route == it.route) {
-                    navController.navigate(it.route) {
-                        navController.graph.startDestinationRoute?.let { home ->
-                            popUpTo(home) {
-                                saveState = true
-                            }
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+            items.forEach { navigationBarItem ->
+                NavigationBarItem(
+                    item = navigationBarItem,
+                    selected = currentRoute == navigationBarItem.route
+                ) {
+                    onClick(navigationBarItem.route)
                 }
             }
         }
@@ -105,7 +101,7 @@ private fun NavigationBarItem(
 @Composable
 fun NavigationPreview() {
     AppTheme {
-        NavigationBar(rememberNavController())
+        NavigationBar(NavigationBarComposable.Home.route)
     }
 }
 
@@ -116,6 +112,6 @@ fun NavigationPreview() {
 @Composable
 fun NavigationPreviewDark() {
     AppTheme(darkTheme = true) {
-        NavigationBar(rememberNavController())
+        NavigationBar(NavigationBarComposable.Home.route)
     }
 }
