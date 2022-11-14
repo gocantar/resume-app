@@ -34,6 +34,7 @@ import com.gocantar.resume.ui.theme.AppTheme
 @Composable
 fun NavigationBar(
     currentRoute: String,
+    modifier: Modifier = Modifier,
     onClick: (String) -> Unit = {}
 ) {
 
@@ -45,6 +46,7 @@ fun NavigationBar(
     )
 
     BottomAppBar(
+        modifier = modifier,
         backgroundColor = MaterialTheme.colors.background,
         elevation = 0.dp
     ) {

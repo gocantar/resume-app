@@ -45,12 +45,12 @@ private fun SkillsRow(skills: List<SkillComposable>) {
                 .fillMaxWidth(1F / SkillsDefaults.ColumnsCount)
                 .padding(end = SkillsDefaults.Padding / 2)
         } else { Modifier.weight(1F) }
-        skills.forEach { skill -> Skill(modifier = modifier, skill = skill) }
+        skills.forEach { skill -> SkillCard(modifier = modifier, skill = skill) }
     }
 }
 
 @Composable
-private fun Skill(
+private fun SkillCard(
     skill: SkillComposable,
     modifier: Modifier = Modifier
 ) {
