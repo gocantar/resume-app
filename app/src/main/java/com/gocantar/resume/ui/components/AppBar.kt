@@ -68,7 +68,7 @@ fun AppBar(
 
 @Preview(showBackground = true)
 @Composable
-fun AppBarPreview() {
+private fun AppBarPreview() {
     AppTheme {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -99,7 +99,7 @@ fun AppBarPreview() {
     backgroundColor = 0xFF000000
 )
 @Composable
-fun AppBarPreviewDark() {
+private fun AppBarPreviewDark() {
     AppTheme(darkTheme = true) {
         Column(
             modifier = Modifier.padding(16.dp),

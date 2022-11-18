@@ -68,7 +68,7 @@ private fun ProfileHeader(header: ProfileHeaderComposable) {
 
 @Preview(showBackground = true)
 @Composable
-fun HeaderPreview() {
+private fun HeaderPreview() {
     AppTheme {
         Header(
             header = ProfileHeaderComposable(
@@ -90,7 +90,7 @@ fun HeaderPreview() {
     backgroundColor = 0xFF000000
 )
 @Composable
-fun HeaderPreviewDark() {
+private fun HeaderPreviewDark() {
     AppTheme(darkTheme = true) {
         Header(
             header = ProfileHeaderComposable(

@@ -2,7 +2,6 @@ package com.gocantar.resume.ui.components
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -25,9 +24,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.gocantar.resume.ui.components.models.NavigationBarComposable
 import com.gocantar.resume.ui.theme.AppTheme
 
@@ -41,14 +37,13 @@ fun NavigationBar(
     val items = listOf(
         NavigationBarComposable.Home,
         NavigationBarComposable.Experience,
-        NavigationBarComposable.Studies,
+        NavigationBarComposable.Education,
         NavigationBarComposable.Portfolio
     )
 
     BottomAppBar(
         modifier = modifier,
-        backgroundColor = MaterialTheme.colors.background,
-        elevation = 0.dp
+        backgroundColor = MaterialTheme.colors.background
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -103,7 +98,7 @@ private fun NavigationBarItem(
 
 @Preview(showBackground = true)
 @Composable
-fun NavigationBarPreview() {
+private fun NavigationBarPreview() {
     AppTheme {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -111,7 +106,7 @@ fun NavigationBarPreview() {
         ) {
             NavigationBar(NavigationBarComposable.Home.route)
             NavigationBar(NavigationBarComposable.Experience.route)
-            NavigationBar(NavigationBarComposable.Studies.route)
+            NavigationBar(NavigationBarComposable.Education.route)
             NavigationBar(NavigationBarComposable.Portfolio.route)
         }
     }
@@ -122,7 +117,7 @@ fun NavigationBarPreview() {
     backgroundColor = 0xFF000000
 )
 @Composable
-fun NavigationBarPreviewDark() {
+private fun NavigationBarPreviewDark() {
     AppTheme(darkTheme = true) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -130,7 +125,7 @@ fun NavigationBarPreviewDark() {
         ) {
             NavigationBar(NavigationBarComposable.Home.route)
             NavigationBar(NavigationBarComposable.Experience.route)
-            NavigationBar(NavigationBarComposable.Studies.route)
+            NavigationBar(NavigationBarComposable.Education.route)
             NavigationBar(NavigationBarComposable.Portfolio.route)
         }
     }

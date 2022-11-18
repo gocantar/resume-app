@@ -8,7 +8,8 @@ data class SkillsComposable(
 )
 
 data class SkillComposable(
+    @DrawableRes
+    val icon: Int,
     val title: String,
-    val description: String?,
-    @DrawableRes val icon: Int
+    val description: String?
 )

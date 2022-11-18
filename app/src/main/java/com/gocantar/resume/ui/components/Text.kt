@@ -89,7 +89,7 @@ fun Link(
 
 @Preview(showBackground = true)
 @Composable
-fun TextPreview() {
+private fun TextPreview() {
     AppTheme {
         Column {
             HeadLine5(text = "Headline5")
@@ -105,7 +105,7 @@ fun TextPreview() {
     backgroundColor = 0xFF000000
 )
 @Composable
-fun TextPreviewDark() {
+private fun TextPreviewDark() {
     AppTheme(darkTheme = true) {
         Column {
             HeadLine5(text = "Headline5")

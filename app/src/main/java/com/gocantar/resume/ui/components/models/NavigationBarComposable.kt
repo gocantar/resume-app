@@ -13,10 +13,10 @@ sealed class NavigationBarComposable(val title: String, val icon: Int, val route
         icon = R.drawable.ic_work,
         route = "experience"
     )
-    object Studies : NavigationBarComposable(
-        title = "Studies",
+    object Education : NavigationBarComposable(
+        title = "Education",
         icon = R.drawable.ic_degree,
-        route = "studies"
+        route = "education"
     )
     object Portfolio : NavigationBarComposable(
         title = "Portfolio",

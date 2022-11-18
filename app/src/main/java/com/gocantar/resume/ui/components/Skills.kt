@@ -44,7 +44,9 @@ private fun SkillsRow(skills: List<SkillComposable>) {
             Modifier
                 .fillMaxWidth(1F / SkillsDefaults.ColumnsCount)
                 .padding(end = SkillsDefaults.Padding / 2)
-        } else { Modifier.weight(1F) }
+        } else {
+            Modifier.weight(1F)
+        }
         skills.forEach { skill -> SkillCard(modifier = modifier, skill = skill) }
     }
 }
@@ -76,37 +78,37 @@ private fun SkillCard(
 
 @Preview(showBackground = true)
 @Composable
-fun SkillPreview() {
+private fun SkillPreview() {
     AppTheme {
         Skills(
             skills = SkillsComposable(
                 header = "Soft Skills",
                 items = listOf(
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "1 Small title ",
-                        description = "1 Small description",
-                        icon = R.drawable.ic_cloud_download
+                        description = "1 Small description"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "2 Medium long title",
-                        description = "2 Medium long description",
-                        icon = R.drawable.ic_cloud_download
+                        description = "2 Medium long description"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "3 Small title",
-                        description = "3 Small description",
-                        icon = R.drawable.ic_cloud_download
+                        description = "3 Small description"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "4 Large very long title more than two lines",
-                        description = "4 Large very long description with more than three lines",
-                        icon = R.drawable.ic_cloud_download
+                        description = "4 Large very long description with more than three lines"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "5 Small title",
-                        description = "5 Small description",
-                        icon = R.drawable.ic_cloud_download
-                    ),
+                        description = "5 Small description"
+                    )
                 )
             )
         )
@@ -118,36 +120,36 @@ fun SkillPreview() {
     backgroundColor = 0xFF000000
 )
 @Composable
-fun SkillPreviewDark() {
+private fun SkillPreviewDark() {
     AppTheme(darkTheme = true) {
         Skills(
             skills = SkillsComposable(
                 header = "Soft Skills",
                 items = listOf(
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "1 Small title ",
-                        description = "1 Small description",
-                        icon = R.drawable.ic_cloud_download
+                        description = "1 Small description"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "2 Medium long title",
-                        description = "2 Medium long description",
-                        icon = R.drawable.ic_cloud_download
+                        description = "2 Medium long description"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "3 Small title",
-                        description = "3 Small description",
-                        icon = R.drawable.ic_cloud_download
+                        description = "3 Small description"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "4 Large very long title more than two lines",
-                        description = "4 Large very long description with more than three lines",
-                        icon = R.drawable.ic_cloud_download
+                        description = "4 Large very long description with more than three lines"
                     ),
                     SkillComposable(
+                        icon = R.drawable.ic_cloud_download,
                         title = "5 Small title",
-                        description = "5 Small description",
-                        icon = R.drawable.ic_cloud_download
+                        description = "5 Small description"
                     )
                 )
             )

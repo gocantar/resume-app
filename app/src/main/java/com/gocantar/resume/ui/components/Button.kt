@@ -74,7 +74,7 @@ fun ButtonLink(
 
 @Preview(showBackground = true)
 @Composable
-fun ButtonPreview() {
+private fun ButtonPreview() {
     AppTheme {
         Column(Modifier.padding(16.dp)) {
             PrimaryButton(text = "Primary button")
@@ -90,7 +90,7 @@ fun ButtonPreview() {
     backgroundColor = 0xFF000000
 )
 @Composable
-fun ButtonPreviewDark() {
+private fun ButtonPreviewDark() {
     AppTheme(darkTheme = true) {
         Column(Modifier.padding(16.dp)) {
             PrimaryButton(text = "Primary button")

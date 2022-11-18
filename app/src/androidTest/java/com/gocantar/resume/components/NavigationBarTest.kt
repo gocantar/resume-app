@@ -31,7 +31,7 @@ class NavigationBarTest {
         rule.onNodeWithTag(NavigationBarComposable.Experience.route)
             .assertIsDisplayed()
             .assertIsNotSelected()
-        rule.onNodeWithTag(NavigationBarComposable.Studies.route)
+        rule.onNodeWithTag(NavigationBarComposable.Education.route)
             .assertIsDisplayed()
             .assertIsNotSelected()
         rule.onNodeWithTag(NavigationBarComposable.Portfolio.route)
