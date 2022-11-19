@@ -52,7 +52,7 @@ object Skills {
             value = 10
         )
         private val Sketch = SkillComposable(
-            icon = R.drawable.ic_picture,
+            icon = R.drawable.ic_pallete,
             title = "Sketch",
             value = 6
         )

@@ -2,6 +2,7 @@ package com.gocantar.resume.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -40,7 +41,7 @@ fun Skills(skills: SkillsComposable) {
     val groupedSkills = skills.items.chunked(SkillsDefaults.ColumnsCount)
     Column(
         modifier = Modifier.padding(SkillsDefaults.Padding),
-        verticalArrangement = Arrangement.spacedBy(SkillsDefaults.Padding)
+        verticalArrangement = Arrangement.spacedBy(SkillsDefaults.Padding),
     ) {
         HeadLine5(text = skills.header)
         groupedSkills.forEach { SkillsRow(skills = it) }
@@ -73,7 +74,8 @@ private fun SkillCard(
 ) {
     Card(
         modifier = modifier.fillMaxHeight(),
-        shape = RoundedCornerShape(24.dp)
+        shape = RoundedCornerShape(24.dp),
+        backgroundColor = MaterialTheme.colors.background
     ) {
         Column(
             modifier = Modifier.padding(SkillsDefaults.Padding)
@@ -117,7 +119,9 @@ fun SkillProgressIndicator(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true
+)
 @Composable
 private fun SkillPreview() {
     AppTheme {

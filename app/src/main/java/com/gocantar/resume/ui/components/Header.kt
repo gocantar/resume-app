@@ -1,6 +1,7 @@
 package com.gocantar.resume.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,7 +32,11 @@ fun Header(
     header: ProfileHeaderComposable,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier
+            .background(MaterialTheme.colors.background)
+            .padding(top = 32.dp, bottom = 16.dp, start = 16.dp, end = 16.dp)
+    ) {
         ProfileHeader(header = header)
         Body(text = header.description, textAlign = TextAlign.Justify)
         Spacer(modifier = Modifier.height(16.dp))
@@ -78,10 +84,7 @@ private fun ProfileHeader(header: ProfileHeaderComposable) {
 @Composable
 private fun HeaderPreview() {
     AppTheme {
-        Header(
-            header = Profile.value,
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 32.dp, bottom = 16.dp)
-        )
+        Header(header = Profile.value)
     }
 }
 
@@ -92,9 +95,6 @@ private fun HeaderPreview() {
 @Composable
 private fun HeaderPreviewDark() {
     AppTheme(darkTheme = true) {
-        Header(
-            header = Profile.value,
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 32.dp, bottom = 16.dp)
-        )
+        Header(header = Profile.value)
     }
 }

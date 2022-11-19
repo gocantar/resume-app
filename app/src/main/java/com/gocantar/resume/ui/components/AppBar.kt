@@ -1,18 +1,20 @@
 package com.gocantar.resume.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -23,18 +25,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gocantar.resume.R
-import com.gocantar.resume.ui.components.models.NavigationBarComposable
-import com.gocantar.resume.ui.extensions.toAlpha
+import com.gocantar.resume.ui.extensions.offsetAlpha
 import com.gocantar.resume.ui.theme.AppTheme
 
 @Composable
 fun FadingAppBar(
     title: String,
     modifier: Modifier = Modifier,
-    scrollState: ScrollState = rememberScrollState()
+    scrollState: LazyListState = rememberLazyListState()
 ) {
-    val alpha = scrollState.toAlpha(LocalDensity.current.run { 56.dp.roundToPx() })
-    AppBar(title = title, modifier = modifier.alpha(alpha))
+    val maxOffset = LocalDensity.current.run { 56.dp.roundToPx() }
+    val alpha = remember { derivedStateOf { scrollState.offsetAlpha(maxOffset = maxOffset) } }
+    AppBar(title = title, modifier = modifier.alpha(alpha.value))
 }
 
 @Composable
@@ -76,19 +78,19 @@ private fun AppBarPreview() {
         ) {
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(0)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = 0)
             )
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(10)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = -10)
             )
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(100)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = -100)
             )
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(200)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = -200)
             )
         }
     }
@@ -107,19 +109,19 @@ private fun AppBarPreviewDark() {
         ) {
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(0)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = 0)
             )
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(10)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = 10)
             )
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(100)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = 100)
             )
             FadingAppBar(
                 title = "Fading Title",
-                scrollState = rememberScrollState(200)
+                scrollState = rememberLazyListState(initialFirstVisibleItemScrollOffset = 200)
             )
         }
     }

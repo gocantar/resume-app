@@ -54,6 +54,7 @@ fun ButtonLink(
     TextButton(
         modifier = modifier,
         onClick = onClick,
+        shape = RoundedCornerShape(12.dp),
         contentPadding = ButtonDefaults.ContentPadding
     ) {
         icon?.let {
