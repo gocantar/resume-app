@@ -1,4 +1,4 @@
-package com.gocantar.resume
+package com.gocantar.resume.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -6,15 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.gocantar.resume.ui.ResumeNavHost
-import com.gocantar.resume.ui.components.AppBar
 import com.gocantar.resume.ui.components.NavigationBar
 import com.gocantar.resume.ui.components.models.NavigationBarComposable
 import com.gocantar.resume.ui.theme.AppTheme

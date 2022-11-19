@@ -11,5 +11,5 @@ data class SkillComposable(
     @DrawableRes
     val icon: Int,
     val title: String,
-    val description: String?
+    val value: Int
 )

@@ -16,7 +16,6 @@ import androidx.compose.material.BottomAppBar
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -68,17 +67,17 @@ private fun NavigationBarItem(
     selected: Boolean,
     onClick: () -> Unit
 ) {
-    val selectedColor by animateColorAsState(
+    val selectedColor = animateColorAsState(
         if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.background
     )
-    val tint by animateColorAsState(
+    val tint = animateColorAsState(
         if (selected) MaterialTheme.colors.onPrimary else MaterialTheme.colors.onBackground
     )
     Box(
         modifier = Modifier
             .size(40.dp)
             .clip(CircleShape)
-            .background(selectedColor, shape = CircleShape)
+            .background(selectedColor.value, shape = CircleShape)
             .selectable(
                 selected = selected,
                 interactionSource = MutableInteractionSource(),
@@ -90,7 +89,7 @@ private fun NavigationBarItem(
         Icon(
             modifier = Modifier.size(24.dp),
             painter = painterResource(id = item.icon),
-            tint = tint,
+            tint = tint.value,
             contentDescription = null
         )
     }

@@ -13,9 +13,8 @@
         android:theme="@style/Theme.ResumeApp"
         tools:targetApi="31">
         <activity
-            android:name=".ResumeActivity"
+            android:name=".ui.ResumeActivity"
             android:exported="true"
-            android:label=""
             android:theme="@style/Theme.ResumeApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

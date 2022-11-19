@@ -1,25 +1,38 @@
 package com.gocantar.resume.ui.components
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
+import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.gocantar.resume.R
+import com.gocantar.resume.data.Skills
 import com.gocantar.resume.ui.components.defaults.SkillsDefaults
 import com.gocantar.resume.ui.components.models.SkillComposable
 import com.gocantar.resume.ui.components.models.SkillsComposable
+import com.gocantar.resume.ui.components.models.extensions.valueProgress
 import com.gocantar.resume.ui.theme.AppTheme
 
 @Composable
@@ -37,7 +50,9 @@ fun Skills(skills: SkillsComposable) {
 @Composable
 private fun SkillsRow(skills: List<SkillComposable>) {
     Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .height(IntrinsicSize.Max)
+            .fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(SkillsDefaults.Padding)
     ) {
         val modifier = if (skills.count() != SkillsDefaults.ColumnsCount) {
@@ -57,22 +72,48 @@ private fun SkillCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier.fillMaxHeight(),
         shape = RoundedCornerShape(24.dp)
     ) {
-        Column(modifier = Modifier.padding(SkillsDefaults.Padding)) {
+        Column(
+            modifier = Modifier.padding(SkillsDefaults.Padding)
+        ) {
             Icon(
                 painter = painterResource(id = skill.icon),
-                tint = MaterialTheme.colors.primary,
+                tint = MaterialTheme.colors.onBackground,
                 contentDescription = null
             )
             Spacer(modifier = Modifier.size(8.dp))
             Subtitle(text = skill.title, maxLines = 2)
             Spacer(modifier = Modifier.size(8.dp))
-            Body(text = skill.description)
-            // TODO add empty Text() with IntrinsicHeight
-            // Text(text = "")
+            SkillProgressIndicator(skill = skill)
         }
+    }
+}
+
+@Composable
+fun SkillProgressIndicator(
+    skill: SkillComposable,
+    modifier: Modifier = Modifier
+) {
+    val state = remember { mutableStateOf(0F) }
+    val animation = animateFloatAsState(
+        targetValue = state.value,
+        animationSpec = tween(1_000)
+    )
+    Box(
+        modifier = Modifier.fillMaxHeight(),
+        contentAlignment = Alignment.BottomStart
+    ) {
+        LinearProgressIndicator(
+            progress = animation.value,
+            modifier = modifier
+                .height(8.dp)
+                .clip(RoundedCornerShape(4.dp))
+        )
+    }
+    LaunchedEffect(key1 = skill) {
+        state.value = skill.valueProgress
     }
 }
 
@@ -82,34 +123,8 @@ private fun SkillPreview() {
     AppTheme {
         Skills(
             skills = SkillsComposable(
-                header = "Soft Skills",
-                items = listOf(
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "1 Small title ",
-                        description = "1 Small description"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "2 Medium long title",
-                        description = "2 Medium long description"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "3 Small title",
-                        description = "3 Small description"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "4 Large very long title more than two lines",
-                        description = "4 Large very long description with more than three lines"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "5 Small title",
-                        description = "5 Small description"
-                    )
-                )
+                header = "Aptitudes Técnicas",
+                items = Skills.Hard.items
             )
         )
     }
@@ -124,34 +139,8 @@ private fun SkillPreviewDark() {
     AppTheme(darkTheme = true) {
         Skills(
             skills = SkillsComposable(
-                header = "Soft Skills",
-                items = listOf(
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "1 Small title ",
-                        description = "1 Small description"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "2 Medium long title",
-                        description = "2 Medium long description"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "3 Small title",
-                        description = "3 Small description"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "4 Large very long title more than two lines",
-                        description = "4 Large very long description with more than three lines"
-                    ),
-                    SkillComposable(
-                        icon = R.drawable.ic_cloud_download,
-                        title = "5 Small title",
-                        description = "5 Small description"
-                    )
-                )
+                header = "Aptitudes Técnicas",
+                items = Skills.Hard.items
             )
         )
     }

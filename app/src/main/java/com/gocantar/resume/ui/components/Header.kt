@@ -16,10 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gocantar.resume.R
+import com.gocantar.resume.data.Profile
 import com.gocantar.resume.ui.components.models.ProfileHeaderComposable
 import com.gocantar.resume.ui.theme.AppTheme
 
@@ -32,9 +34,15 @@ fun Header(
         ProfileHeader(header = header)
         Body(text = header.description, textAlign = TextAlign.Justify)
         Spacer(modifier = Modifier.height(16.dp))
-        PrimaryButton(text = "Descargar", icon = R.drawable.ic_cloud_download)
+        PrimaryButton(
+            text = stringResource(id = R.string.label_download),
+            icon = R.drawable.ic_cloud_download
+        )
         Spacer(modifier = Modifier.height(8.dp))
-        ButtonLink(text = "Contacto", icon = R.drawable.ic_contact)
+        ButtonLink(
+            text = stringResource(id = R.string.label_contact),
+            icon = R.drawable.ic_contact
+        )
     }
 }
 
@@ -50,8 +58,8 @@ private fun ProfileHeader(header: ProfileHeaderComposable) {
             Column(
                 modifier = Modifier.weight(1F)
             ) {
-                HeadLine5(text = "Hola")
-                Subtitle(text = "Mi nombre es")
+                HeadLine5(text = stringResource(id = R.string.label_greeting))
+                Subtitle(text = stringResource(id = R.string.label_i_am))
                 Subtitle(text = "${header.firstName} ${header.secondName}")
             }
             Image(
@@ -59,7 +67,7 @@ private fun ProfileHeader(header: ProfileHeaderComposable) {
                     .size(150.dp)
                     .clip(CircleShape),
                 contentScale = ContentScale.Crop,
-                painter = painterResource(id = R.drawable.image_profile),
+                painter = painterResource(id = header.image),
                 contentDescription = null
             )
         }
@@ -71,15 +79,7 @@ private fun ProfileHeader(header: ProfileHeaderComposable) {
 private fun HeaderPreview() {
     AppTheme {
         Header(
-            header = ProfileHeaderComposable(
-                firstName = "Gonzalo",
-                secondName = "Cantarero",
-                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do " +
-                        "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " +
-                        "minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-                        "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in " +
-                        "voluptate velit esse cillum dolore eu fugiat nulla pariatur"
-            ),
+            header = Profile.value,
             modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 32.dp, bottom = 16.dp)
         )
     }
@@ -93,15 +93,7 @@ private fun HeaderPreview() {
 private fun HeaderPreviewDark() {
     AppTheme(darkTheme = true) {
         Header(
-            header = ProfileHeaderComposable(
-                firstName = "Gonzalo",
-                secondName = "Cantarero",
-                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do " +
-                        "eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad " +
-                        "minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip " +
-                        "ex ea commodo consequat. Duis aute irure dolor in reprehenderit in " +
-                        "voluptate velit esse cillum dolore eu fugiat nulla pariatur"
-            ),
+            header = Profile.value,
             modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 32.dp, bottom = 16.dp)
         )
     }
