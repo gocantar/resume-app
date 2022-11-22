@@ -41,4 +41,13 @@ class LazyListStateExtensionsTest {
         val scrollState = LazyListState(firstVisibleItemScrollOffset = 110)
         assertEquals(1F, scrollState.offsetAlpha(maxOffset = 100))
     }
+
+    @Test
+    fun `Given scroll of 99 pixel When first item is not visible Then should return 1`() {
+        val scrollState = LazyListState(
+            firstVisibleItemIndex = 1,
+            firstVisibleItemScrollOffset = 99
+        )
+        assertEquals(1F, scrollState.offsetAlpha(maxOffset = 100))
+    }
 }

@@ -4,12 +4,12 @@ import androidx.annotation.DrawableRes
 
 data class SkillsComposable(
     val header: String,
-    val items: List<SkillComposable>
+    val items: List<SkillsPanelComposable>
 )
 
-data class SkillComposable(
+data class SkillsPanelComposable(
     @DrawableRes
     val icon: Int,
     val title: String,
-    val value: Int
+    val skills: List<String>
 )
