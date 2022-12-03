@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <style name="Theme.ResumeApp.Starting" parent="Theme.SplashScreen.IconBackground">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenIconBackgroundColor">#FF3DDC84</item>
+        <item name="postSplashScreenTheme">@style/Theme.ResumeApp</item>
+    </style>
+
     <style name="Theme.ResumeApp" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/white</item>
