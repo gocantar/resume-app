@@ -41,7 +41,7 @@ fun NavigationBar(
     )
 
     BottomAppBar(
-        modifier = modifier,
+        modifier = modifier.testTag("navigation-bar"),
         backgroundColor = MaterialTheme.colors.background
     ) {
         Row(
@@ -68,7 +68,7 @@ private fun NavigationBarItem(
     onClick: () -> Unit
 ) {
     val selectedColor = animateColorAsState(
-        if (selected) MaterialTheme.colors.primary else MaterialTheme.colors.background
+        if (selected) MaterialTheme.colors.primaryVariant else MaterialTheme.colors.background
     )
     val tint = animateColorAsState(
         if (selected) MaterialTheme.colors.onPrimary else MaterialTheme.colors.onBackground

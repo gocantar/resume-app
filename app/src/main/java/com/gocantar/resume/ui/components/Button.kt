@@ -29,6 +29,9 @@ fun PrimaryButton(
     Button(
         modifier = modifier,
         shape = RoundedCornerShape(12.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = MaterialTheme.colors.primaryVariant
+        ),
         onClick = onClick
     ) {
         icon?.let {
@@ -68,7 +71,7 @@ fun ButtonLink(
         }
         Link(
             text = text,
-            color = MaterialTheme.colors.primary
+            color = MaterialTheme.colors.primaryVariant
         )
     }
 }

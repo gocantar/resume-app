@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gocantar.resume.data.Profile
@@ -14,12 +15,16 @@ import com.gocantar.resume.data.Skills
 import com.gocantar.resume.ui.components.FadingAppBar
 import com.gocantar.resume.ui.components.Header
 import com.gocantar.resume.ui.components.Skills
+import com.gocantar.resume.ui.components.extensions.toHeaderName
 import com.gocantar.resume.ui.components.models.SkillsComposable
 import com.gocantar.resume.ui.theme.AppTheme
 
 @Composable
 fun HomeScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .testTag("home-screen")
+    ) {
         val scrollState = rememberLazyListState()
         LazyColumn(state = scrollState) {
             item {
@@ -35,7 +40,7 @@ fun HomeScreen() {
             }
         }
         FadingAppBar(
-            title = Profile.value.firstName,
+            title = Profile.value.toHeaderName(),
             scrollState = scrollState
         )
     }

@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.gocantar.resume.ui.components.NavigationBar
 import com.gocantar.resume.ui.components.models.NavigationBarComposable
@@ -21,30 +24,38 @@ class ResumeActivity : ComponentActivity() {
         setContent {
             AppTheme {
                 val navController = rememberNavController()
-                val screen = remember { mutableStateOf(NavigationBarComposable.Home.route) }
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    content = { padding ->
-                        Box(modifier = Modifier.padding(padding)) {
-                            ResumeNavHost(navController = navController)
-                        }
-                    },
-                    bottomBar = {
-                        NavigationBar(screen.value) { route ->
-                            navController.navigate(route) {
-                                navController.graph.startDestinationRoute?.let { home ->
-                                    popUpTo(home) {
-                                        saveState = true
-                                    }
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                            screen.value = route
-                        }
-                    }
-                )
+                ResumeActivityContent(navController = navController)
             }
         }
     }
+}
+
+@Composable
+fun ResumeActivityContent(navController: NavHostController) {
+    val navBackStackEntry = navController.currentBackStackEntryAsState().value
+    val destinationScreen = navBackStackEntry
+        ?.destination
+        ?.route
+        ?: NavigationBarComposable.Home.route
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        content = { padding ->
+            Box(modifier = Modifier.padding(padding)) {
+                ResumeNavHost(navController = navController)
+            }
+        },
+        bottomBar = {
+            NavigationBar(destinationScreen) { route ->
+                navController.navigate(route) {
+                    navController.graph.startDestinationRoute?.let { home ->
+                        popUpTo(home) {
+                            saveState = true
+                        }
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            }
+        }
+    )
 }
