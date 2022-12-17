@@ -1,4 +1,4 @@
-package com.gocantar.resume.data.models
+package com.gocantar.resume.domain.models
 
 import android.net.Uri
 

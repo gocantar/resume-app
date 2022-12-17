@@ -1,19 +1,20 @@
 package com.gocantar.resume.data.repository
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.gocantar.resume.data.datasource.SharedPreferencesDataSource
-import com.gocantar.resume.data.extensions.appendAlphaNumericSuffix
+import com.gocantar.resume.data.extensions.appendSuffix
 import com.gocantar.resume.data.handlers.AssetsHandler
-import com.gocantar.resume.data.handlers.ContentHandler
-import com.gocantar.resume.data.models.PdfUri
+import com.gocantar.resume.data.handlers.content.ContentHandler
+import com.gocantar.resume.data.handlers.content.ContentHandlerFactory
+import com.gocantar.resume.domain.models.PdfUri
+import javax.inject.Inject
 
-@RequiresApi(Build.VERSION_CODES.Q)
-class ResumePdfRepository(
+class PdfRepository @Inject constructor(
     private val preferences: SharedPreferencesDataSource,
     private val assets: AssetsHandler,
-    private val content: ContentHandler
+    contentFactory: ContentHandlerFactory
 ) {
+
+    private val content: ContentHandler by lazy { contentFactory.get() }
 
     fun get(): Result<PdfUri?> {
         val storeFileName = preferences.get(SharedPreferencesDataSource.KEY_PDF_FILE)
@@ -27,7 +28,7 @@ class ResumePdfRepository(
     private fun saveNewFile(): Result<PdfUri> {
         val assetFileName = "cv_file.pdf"
         val baseFileName = "Gonzalo_Cantarero"
-        val file = baseFileName.appendAlphaNumericSuffix()
+        val file = baseFileName.appendSuffix()
         val url = runCatching { content.save(file = file, data = assets.open(assetFileName)) }
         if (url.isSuccess) {
             preferences.set(SharedPreferencesDataSource.KEY_PDF_FILE, file)

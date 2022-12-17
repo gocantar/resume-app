@@ -3,6 +3,7 @@ package com.gocantar.resume.data.datasource
 import android.content.Context
 import android.content.SharedPreferences
 import com.gocantar.resume.BuildConfig
+import javax.inject.Inject
 
 class SharedPreferencesDataSource(private val context: Context) {
 

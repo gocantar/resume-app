@@ -1,7 +1,7 @@
 package com.gocantar.resume.ui
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,7 +15,8 @@ import com.gocantar.resume.ui.screens.PortfolioScreen
 fun ResumeNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = NavigationBarComposable.Home.route) {
         composable(NavigationBarComposable.Home.route) {
-            HomeScreen()
+            val viewModel = hiltViewModel<ResumeViewModel>()
+            HomeScreen(viewModel)
         }
         composable(NavigationBarComposable.Experience.route) {
             ExperiencesScreen()

@@ -31,7 +31,9 @@ import com.gocantar.resume.ui.theme.AppTheme
 @Composable
 fun Header(
     header: ProfileHeaderComposable,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClickButton: () -> Unit = {},
+    onClickLink: () -> Unit = {}
 ) {
     Column(
         modifier = modifier
@@ -43,12 +45,14 @@ fun Header(
         Spacer(modifier = Modifier.height(16.dp))
         PrimaryButton(
             text = stringResource(id = R.string.label_download),
-            icon = R.drawable.ic_cloud_download
+            icon = R.drawable.ic_cloud_download,
+            onClick = onClickButton
         )
         Spacer(modifier = Modifier.height(8.dp))
         ButtonLink(
             text = stringResource(id = R.string.label_contact),
-            icon = R.drawable.ic_contact
+            icon = R.drawable.ic_contact,
+            onClick = onClickLink
         )
     }
 }
